@@ -1,0 +1,21 @@
+:root {
+    /*  Colores */
+    --VeryLightGrayishCyan: hsl(189, 41%, 97%);
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: black;
+    background-color: var(--LightGrayishCyan);
+}

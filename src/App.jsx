@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import './App.css'
-
 import Formulario from './components/Formulario';
 
 function App() {
@@ -13,7 +11,10 @@ function App() {
 
   return (
       <>
-        <h1>SPLITTER</h1>
+        <div className='titulo'>
+          <h1>SPLI</h1>
+          <h2>TTER</h2>
+        </div>
         <Formulario/>
       </>
   )

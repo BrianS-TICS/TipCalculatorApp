@@ -1,26 +1,115 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+:root{
+  /*  Colores */
+  --VeryDarkCyan: hsl(183, 100%, 15%);
+  --DarkGrayishCyan: hsl(186, 14%, 43%);
+  --GrayIshCyan: hsl(184, 14%, 56%);
+  --LightGrayishCyan: hsl(185, 41%, 84%);
+  --VeryLightGrayishCyan: #f3f8fb;
+  --White: hsl(0, 0%, 100%);
+  --Cyan : #26c2ad;
+  --CyanLow : #9fe7df;
+  --Red : #c69888;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+form{
+  background-color: var(--White);
+  padding: 2rem;
+  border-radius: 1rem;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+label{
+  font-size: 1.5rem;
+  color: var(--DarkGrayishCyan);
+}
+
+input{
+  color: var(--VeryDarkCyan);
+  font-size: 1.5rem;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  background-color: var(--VeryLightGrayishCyan);
+  border: none;
+}
+
+input::placeholder{
+  text-align: center;
+  color: var(--VeryDarkCyan);
+  background-color: var(--VeryLightGrayishCyan);
+}
+
+input[type="number"]{
+  background-color: var(--VeryLightGrayishCyan);
+  width: 100%;
+  font-size: 2rem;
+  text-align: end;
+  -moz-appearance:textfield; 
+}
+
+input[type="number"]:focus{
+  outline: .2rem var(--Cyan) solid;
+}
+
+/* Errror */
+
+.inputError{
+  outline: .2rem var(--Red) solid;
+}
+
+input[type="number"]::placeholder{
+  opacity: .5;
+  text-align: end;
+}
+
+/* Quita botones de input button*/
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+input[type="submit"]{
+  font-size: 2rem;
+  cursor: pointer;
+  background-color: var(--Cyan);
+  color: var(--VeryDarkCyan);
+}
+
+.opacidad{
+  cursor: not-allowed;
+  opacity: .1;
+}
+
+.titulo{
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+}
+
+.titulo h1,
+.titulo h2
+{
+  font-size: 2.3rem;
+  letter-spacing: 1rem;
+  text-align: center;
+  color: var(--DarkGrayishCyan);
+  margin: 0;
+}
+
+span{
+  font-size: 1.2rem;
+  color: var(--GrayIshCyan)
 }
 
 .contenedor{
-  max-width: 60rem;
+  max-width: 80rem;
+  width: 90%;
   margin: 0 auto;
 }
 
 .formulario{
+  border-radius: 2rem;
+  padding: 3rem;
   margin-top: 3rem;
   display: grid;
   grid-template-columns: repeat(2,1fr);
@@ -31,37 +120,94 @@
 
 .formulario label{
   display: block;
-  margin: 1rem 0;
+  margin: 4rem 0rem 2rem 0rem;
   text-align: left;
 }
 
+.formulario label:first-of-type{
+  display: block;
+  margin: 0rem 0rem 1rem 0rem;
+  text-align: left;
+}
 
+.formulario label:last-of-type{
+  display: block;
+  margin: 4rem 0rem 1rem 0rem;
+  text-align: left;
+}
 
 .propinas{
   display: grid;
-  grid-template-columns: repeat(3, 33%);
-  grid-template-rows: 2fr;
+  grid-template-columns: repeat(3, 1fr);
+
   align-items: center;
-  justify-content: center;
+  justify-content: left;
 
   gap: 1rem;
 }
 
-.propinas button, input{
+.propinas input{
   border-style: none;
   font-size: 1.5rem;
   border-radius: .2rem;
+  padding: 1rem;
 }
 
-.personalizado{
-  width: auto;
+.propinas input[type="button"]{
+  cursor: pointer;
+  border-radius: .5rem;
+  background-color: var(--VeryDarkCyan);
+  font-size: 2rem;
+  color: var(--White);
+}
+
+/* Al seleccionar porcentaje*/
+
+.seleccion{
+  background-color: var(--Cyan);
+}
+
+.propinas input[type="button"]:hover{
+  background-color: var(--CyanLow);
+  color: var(--VeryDarkCyan);
+}
+
+.propinas input[type="number"]{
+  text-align: center;
+  font-size: 2rem;
+}
+
+.propinas input[type="number"]::placeholder{
+  text-align: center;
+  font-size: 2rem;
+}
+
+.entrada-datos{
+  padding: 1rem;
 }
 
 .bg-Salida{
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  background-color: var(--VeryDarkCyan);
   color: #242424;
-  padding: 2rem;
-  border-radius: 1rem;
+  padding: 4rem;
+  border-radius: 1.5rem;
+}
+
+.bg-Salida h2{
+  text-align: left;
+  letter-spacing: 0rem;
+  font-size: 1.5rem;
+  color: var(--White);
+  margin-bottom: .5rem;
+}
+
+.bg-Salida p{
+  color: var(--Cyan);
 }
 
 .resultados{
@@ -70,17 +216,21 @@
   flex-direction: row;
   text-align: left;
   justify-content: space-between;
-  
+  margin-bottom: 2rem;
 }
 
 .resultados p{
-  font-size: 3.5rem;
+  font-size: 4rem;
   margin: 0;
 }
-
 
 .btn-reset{
   text-transform: uppercase;
   display: block;
-  margin-top: 5rem;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.btn-reset:hover{
+  background-color: var(--CyanLow);
 }
