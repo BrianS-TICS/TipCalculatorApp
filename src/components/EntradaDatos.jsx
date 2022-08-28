@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
-const EntradaDatos = ({ setAmount, setPercentage, setPeople }) => {
-
-    const [error, setError] = useState([]);
+const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError }) => {
 
     function handleAmout(e) {
         const valor = Number(e.target.value)
@@ -36,8 +34,15 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople }) => {
         }
     }
 
-    function handlePorcentaje(e) {
+    function handleChangePorcentaje(e) {
+        const buttons = document.querySelectorAll(".propinas input[type='button']")
+
+        buttons.forEach(btn => {
+            btn.classList.remove('activo');
+        })
+
         const valor = Number(e.target.value)
+
         if (valor <= 0) {
             if (!Object.values(error).includes('Porcentaje')) {
                 setError([...error, 'Porcentaje'])
@@ -49,6 +54,28 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople }) => {
             }
             setPercentage(valor)
         }
+
+    }
+
+    function handlePorcentaje(e) {
+
+        //* Si el elemento seleccionado fue un button
+        if (e.target.type === 'button') {
+            const porcentajeDeBoton = Number(e.target.id);
+
+            const buttons = document.querySelectorAll(".propinas input[type='button']")
+            buttons.forEach(btn => {
+                if (btn.id != e.target.id) {
+                    btn.classList.remove('activo');
+                }
+            })
+
+            e.target.classList.toggle('activo');
+
+            setPercentage(porcentajeDeBoton);
+
+        }
+        
     }
 
     return (
@@ -59,12 +86,12 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople }) => {
             <label htmlFor="">Select Tip %</label>
 
             <div className='propinas'>
-                <input type="button" id='' className='porcentaje' value='5%' />
-                <input type="button" id='' className='porcentaje' value='10%' />
-                <input type="button" id='' className='porcentaje' value='15%' />
-                <input type="button" id='' className='porcentaje' value='25%' />
-                <input type="button" id='' className='porcentaje' value='50%' />
-                <input onChange={handlePorcentaje} id='' type="number" className={Object.values(error).includes('Porcentaje') ? 'personalizado inputError' : 'personalizado'} placeholder='Custom' />
+                <input type="button" onClick={handlePorcentaje} id={5} className='porcentaje' value='5%' />
+                <input type="button" onClick={handlePorcentaje} id={10} className='porcentaje' value='10%' />
+                <input type="button" onClick={handlePorcentaje} id={15} className='porcentaje' value='15%' />
+                <input type="button" onClick={handlePorcentaje} id={25} className='porcentaje' value='25%' />
+                <input type="button" onClick={handlePorcentaje} id={50} className='porcentaje' value='50%' />
+                <input onClick={handlePorcentaje} onChange={handleChangePorcentaje} id='' type="number" className={Object.values(error).includes('Porcentaje') ? 'personalizado inputError' : 'personalizado'} placeholder='Custom' />
             </div>
 
             <label htmlFor="">Number of people</label>
