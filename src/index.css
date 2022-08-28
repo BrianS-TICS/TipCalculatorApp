@@ -49,11 +49,20 @@ input[type="number"]:focus{
   outline: .2rem var(--Cyan) solid;
 }
 
-/* Errror */
+/* Error */
 
 .inputError{
   outline: .2rem var(--Red) solid;
 }
+
+input[type="number"].inputError:focus{
+  outline: .2rem var(--Red) solid;
+}
+
+input[type="number"]:focus{
+  outline: .2rem var(--Cyan) solid;
+}
+
 
 input[type="number"]::placeholder{
   opacity: .5;
