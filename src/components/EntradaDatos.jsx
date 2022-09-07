@@ -1,12 +1,10 @@
-import { useState } from 'react'
-
-const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError }) => {
+const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError}) => {
 
     function handleAmout(e) {
         const valor = Number(e.target.value)
 
         /* Si no existe un error (false) entonces se asigna el valor*/
-        if (valor <= 0) {
+        if (valor <= 0 || valor > 9999) {
             if (!Object.values(error).includes('Amout')) {
                 setError([...error, 'Amout'])
             }
@@ -15,7 +13,10 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError }) 
             if (error.length > 0) {
                 setError(error.filter(error => error !== 'Amout'))
             }
-            setAmount(valor)
+
+            if (valor < 99999) {
+                setAmount(valor)
+            }
         }
     }
 
@@ -43,16 +44,20 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError }) 
 
         const valor = Number(e.target.value)
 
-        if (valor <= 0) {
+        if (valor <= 0 || valor > 110) {
             if (!Object.values(error).includes('Porcentaje')) {
                 setError([...error, 'Porcentaje'])
             }
         }
         else {
+
             if (error.length > 0) {
                 setError(error.filter(error => error !== 'Porcentaje'))
             }
-            setPercentage(valor)
+
+            if (valor <= 110) {
+                setPercentage(valor)
+            }
         }
 
     }
@@ -81,7 +86,7 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError }) 
     return (
         <div className='entrada-datos'>
             <label htmlFor="bill">Bill</label>
-            <input onChange={handleAmout} className={Object.values(error).includes('Amout') ? 'inputError' : ''} id='amount' type="number" placeholder='0' name='bill' />
+            <input  onChange={handleAmout} className={Object.values(error).includes('Amout') ? 'inputError' : ''} id='amount' type="number" placeholder='0' name='bill' />
 
             <label htmlFor="">Select Tip %</label>
 

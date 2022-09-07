@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 
 import EntradaDatos from './EntradaDatos'
 import SalidaDatos from './SalidaDatos'
@@ -17,24 +17,28 @@ const Formulario = () => {
 
     const [error, setError] = useState([]);
 
-    const handleSubmit = (e) => {
-        // Resetear formulario
-        e.preventDefault();
-        e.target.reset();
+    const [reset, setReset] = useState(false)
 
-        setError([]);
+    useEffect(() => {
+        if (reset) {
+            document.querySelector('#form').reset();
 
-        reseteaSeleccion();
-
-        setAmount(0);
-        setPercentage(0)
-        setPeople(0)
-        setTipIndividial(0)
-        setTipTotal(0)
-    }  
+            setError([]);
+            reseteaSeleccion();
+    
+            setAmount(0);
+            setPercentage(0)
+            setPeople(0)
+            setTipIndividial(0)
+            setTipTotal(0)
+            
+            setReset(false)
+        }
+    }, [reset])
+    
 
     return (
-        <form onSubmit={handleSubmit} className='formulario contenedor'>
+        <form id={'form'} className='formulario contenedor'>
             <EntradaDatos
                 setAmount = {setAmount}
                 setPercentage = {setPercentage}
@@ -53,6 +57,7 @@ const Formulario = () => {
 
                 setTipIndividial = {setTipIndividial}
                 setTipTotal = {setTipTotal}
+                setReset = {setReset}
             />
         </form>
 

@@ -1,7 +1,7 @@
 import React from 'react'
-import {useEffect } from 'react'
+import { useEffect } from 'react'
 
-const SalidaDatos = ({people,amount,percentage, setTipIndividial, tipIndividial, setTipTotal, tipTotal}) => {
+const SalidaDatos = ({ people, amount, percentage, setTipIndividial, tipIndividial, setTipTotal, tipTotal, setReset}) => {
 
     const consulta = [
         amount,
@@ -11,13 +11,13 @@ const SalidaDatos = ({people,amount,percentage, setTipIndividial, tipIndividial,
 
     useEffect(() => {
         if (!Object.values(consulta).includes(0)) {
-            const calcularTotal = (percentage * amount / 100).toFixed(2); 
-            const calcularIndividual = ( (percentage * amount / 100) / people).toFixed(2); 
+            const calcularTotal = (percentage * amount / 100).toFixed(2);
+            const calcularIndividual = ((percentage * amount / 100) / people).toFixed(2);
 
             setTipTotal(calcularTotal);
             setTipIndividial(calcularIndividual);
         }
-    },[consulta]);
+    }, [consulta]);
 
     return (
         <div className='bg-Salida'>
@@ -34,12 +34,12 @@ const SalidaDatos = ({people,amount,percentage, setTipIndividial, tipIndividial,
                     <div className='words'>
                         <h2>Total</h2>
                         <span>/ person</span>
-                    </div>  
+                    </div>
                     <p>${tipTotal}</p>
                 </div>
             </div>
 
-            <input className='btn-reset' type="submit" value="Reset" />
+            <input className='btn-reset' type="button" value="Reset" onClick={ () => setReset(true)} />
         </div>
     )
 }

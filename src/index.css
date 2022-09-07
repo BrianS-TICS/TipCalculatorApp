@@ -79,7 +79,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-input[type="submit"] {
+input[type="button"] {
   font-size: 2rem;
   cursor: pointer;
   background-color: var(--Cyan);
@@ -235,8 +235,14 @@ span {
   height: 100%;
   background-color: var(--VeryDarkCyan);
   color: #242424;
-  padding: 4rem;
+  padding: 2rem;
   border-radius: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .bg-Salida {
+    padding: 4rem;
+  }
 }
 
 .bg-Salida h2 {
@@ -261,8 +267,14 @@ span {
 }
 
 .resultados p {
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 0;
+}
+
+@media (min-width: 768px) {
+  .resultados p {
+    font-size: 4rem;
+  }
 }
 
 .btn-reset {
