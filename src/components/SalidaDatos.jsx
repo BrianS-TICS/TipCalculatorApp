@@ -39,7 +39,7 @@ const SalidaDatos = ({ people, amount, percentage, setTipIndividial, tipIndividi
                 </div>
             </div>
 
-            <input className='btn-reset' type="button" value="Reset" onClick={ () => setReset(true)} />
+            <input className='btn-reset' type="button" value="Reset" onClick={ () => { setReset(true) } } />
         </div>
     )
 }

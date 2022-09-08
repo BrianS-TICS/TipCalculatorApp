@@ -6,3 +6,7 @@ export const reseteaSeleccion = () => {
     })
 }
 
+export const reseteaFormulario = () =>{
+    const form = document.querySelector("#form")
+    form.reset();
+}

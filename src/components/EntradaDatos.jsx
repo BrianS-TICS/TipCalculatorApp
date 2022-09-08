@@ -1,10 +1,11 @@
-const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError}) => {
+
+const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError }) => {
 
     function handleAmout(e) {
         const valor = Number(e.target.value)
 
         /* Si no existe un error (false) entonces se asigna el valor*/
-        if (valor <= 0 || valor > 9999) {
+        if (valor <= 0) {
             if (!Object.values(error).includes('Amout')) {
                 setError([...error, 'Amout'])
             }
@@ -13,10 +14,7 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError}) =
             if (error.length > 0) {
                 setError(error.filter(error => error !== 'Amout'))
             }
-
-            if (valor < 99999) {
-                setAmount(valor)
-            }
+            setAmount(valor)
         }
     }
 
@@ -44,7 +42,7 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError}) =
 
         const valor = Number(e.target.value)
 
-        if (valor <= 0 || valor > 110) {
+        if (valor <= 0) {
             if (!Object.values(error).includes('Porcentaje')) {
                 setError([...error, 'Porcentaje'])
             }
@@ -55,9 +53,7 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError}) =
                 setError(error.filter(error => error !== 'Porcentaje'))
             }
 
-            if (valor <= 110) {
-                setPercentage(valor)
-            }
+            setPercentage(valor)
         }
 
     }
@@ -80,15 +76,15 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError}) =
             setPercentage(porcentajeDeBoton);
 
         }
-        
+
     }
 
     return (
         <div className='entrada-datos'>
             <label htmlFor="bill">Bill</label>
-            <input  onChange={handleAmout} className={Object.values(error).includes('Amout') ? 'inputError' : ''} id='amount' type="number" placeholder='0' name='bill' />
+            <input onKeyUp={handleAmout} className={Object.values(error).includes('Amout') ? 'inputError' : ''} id='amount' type="number" placeholder='0' name='bill' />
 
-            <label htmlFor="">Select Tip %</label>
+            <label htmlFor="custom">Select Tip %</label>
 
             <div className='propinas'>
                 <input type="button" onClick={handlePorcentaje} id={5} className='porcentaje' value='5%' />
@@ -96,11 +92,11 @@ const EntradaDatos = ({ setAmount, setPercentage, setPeople, error, setError}) =
                 <input type="button" onClick={handlePorcentaje} id={15} className='porcentaje' value='15%' />
                 <input type="button" onClick={handlePorcentaje} id={25} className='porcentaje' value='25%' />
                 <input type="button" onClick={handlePorcentaje} id={50} className='porcentaje' value='50%' />
-                <input onClick={handlePorcentaje} onChange={handleChangePorcentaje} id='' type="number" className={Object.values(error).includes('Porcentaje') ? 'personalizado inputError' : 'personalizado'} placeholder='Custom' />
+                <input name="custom" onClick={handlePorcentaje} onKeyUp={handleChangePorcentaje} id='' type="number" className={Object.values(error).includes('Porcentaje') ? 'personalizado inputError' : 'personalizado'} placeholder='Custom' />
             </div>
 
             <label htmlFor="">Number of people</label>
-            <input onChange={handlePeople} type="number" className={Object.values(error).includes('People') ? 'inputError' : ''} placeholder='0' />
+            <input onKeyUp={handlePeople} type="number" className={Object.values(error).includes('People') ? 'inputError' : ''} placeholder='0' name="people" />
         </div>
     )
 }
